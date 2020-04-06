@@ -2,6 +2,7 @@ package com.in28minutes.rest.webservices.restfulwebservices.user;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -34,6 +35,19 @@ public class UserDaoService {
 	public User findOne(int id) {
 		for(User user : users) {
 			if(user.getId() == id) {
+				return user;
+			}
+		}
+		return null;
+	}
+	
+	public User delete(int id) {
+		Iterator<User> itr = users.iterator();
+		
+		while(itr.hasNext()) {
+			User user = itr.next();
+			if(user.getId() == id) {
+				itr.remove();
 				return user;
 			}
 		}

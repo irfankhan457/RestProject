@@ -3,8 +3,11 @@ package com.in28minutes.rest.webservices.restfulwebservices.user;
 import java.net.URI;
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +42,7 @@ public class UserResource {
 	//input - details of the User
 	//output - CREATED & Return The created URI
 	@PostMapping("/users")
-	public ResponseEntity<Object> createUser(@RequestBody User user) {//requestBody actually map to the object and json
+	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {//requestBody actually map to the object and json
 		User saveUser = userDaoService.save(user);
 		//CREATED CODE
 		//ServletUriComponentsBuilder.fromCurrentRequest()   == /user
@@ -48,5 +51,13 @@ public class UserResource {
 		.buildAndExpand(saveUser.getId())				  // this will pass the id value 
 		.toUri();
 		return ResponseEntity.created(location).build();
+	}
+	
+	@DeleteMapping("/users/{id}")
+	public void deleteUser(@PathVariable int id) {
+		User user = userDaoService.delete(id);
+		if(user == null) {
+			throw new UserNotFoundException("id - "+ id);
+		}
 	}
 }
