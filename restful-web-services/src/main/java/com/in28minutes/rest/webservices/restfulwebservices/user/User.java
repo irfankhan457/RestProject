@@ -2,19 +2,24 @@ package com.in28minutes.rest.webservices.restfulwebservices.user;
 
 import java.util.Date;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description = "All details about the user.")
 public class User {
 	
 	//@NotNull
 	private Integer id;
 
 	@Size(min=2, message="Name Should Have atleast 2 charecters")
+	@ApiModelProperty(notes = "Name Should Have atleast 2 charecters")
 	private String name;
 
 	@Past
+	@ApiModelProperty(notes = "Birth date should be in the Past")
 	private Date birthDate;
 
 	public User(Integer id, String name, Date birthDate) {
