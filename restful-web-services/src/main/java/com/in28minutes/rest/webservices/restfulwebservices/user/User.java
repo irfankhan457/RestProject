@@ -2,6 +2,10 @@ package com.in28minutes.rest.webservices.restfulwebservices.user;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -9,9 +13,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(description = "All details about the user.")
+@Entity
+@Table(name="User")
 public class User {
 	
 	//@NotNull
+	@Id
+	@GeneratedValue
 	private Integer id;
 
 	@Size(min=2, message="Name Should Have atleast 2 charecters")
