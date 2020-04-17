@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
-//@JsonIgnoreProperties("field1")
+@JsonIgnoreProperties(value = {"field1", "field3"})
 public class SomeBean {
 
 	private String field1;
-	@JsonIgnore
+	//@JsonIgnore
 	private String field2;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	private String field3;
 	
 	
