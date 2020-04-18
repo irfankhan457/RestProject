@@ -1,0 +1,8 @@
+insert into user values(1, sysDate(),'Abba')
+insert into user values(2, sysDate(),'Amma')
+insert into user values(3, sysDate(),'Appi')
+insert into user values(4, sysDate(),'anna')
+insert into user values(5, sysDate(),'irfan')
+insert into user values(6, sysDate(),'mehmood')
+insert into user values(7, sysDate(),'sadina')
+insert into user values(8, sysDate(),'roshani')
