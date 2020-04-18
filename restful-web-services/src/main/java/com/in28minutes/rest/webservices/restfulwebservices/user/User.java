@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Past;
@@ -19,7 +20,7 @@ public class User {
 	
 	//@NotNull
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Size(min=2, message="Name Should Have atleast 2 charecters")
@@ -30,6 +31,9 @@ public class User {
 	@ApiModelProperty(notes = "Birth date should be in the Past")
 	private Date birthDate;
 
+	public User() {
+		
+	}
 	public User(Integer id, String name, Date birthDate) {
 		super();
 		this.name = name;
