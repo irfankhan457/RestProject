@@ -1,11 +1,13 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -30,6 +32,12 @@ public class User {
 	@Past
 	@ApiModelProperty(notes = "Birth date should be in the Past")
 	private Date birthDate;
+	/*****************************MappedBy Explanation ******************/
+	/*******as i don't want to create relationship b/w both user and post*******/
+	/**i would actually just create the relationship column of user IN post**/
+	/**so i am saying its mapped by= the name of the filed in post which is USER**/
+	@OneToMany(mappedBy="user")
+	private List<Post> posts;
 
 	public User() {
 		
@@ -65,10 +73,12 @@ public class User {
 		this.id = id;
 	}
 
-	
-	
-
-
+	public List<Post> getPosts() {
+		return posts;
+	}
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
