@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Post {
 	
@@ -23,7 +25,10 @@ public class Post {
 	/*******so this side (at post) we are making it at lazy **********/
 	/******so this means unless call, it will not fetch user detail from post******/
 	/******unless you call post.getUser() you would not get User info ********/
+	/**as we dont want the detail of User we just need post so ignor the user**/
+	/** It also causing problem if user fetch post post fetch user than recursive **/
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JsonIgnore
 	private User user;
 
 	public Integer getId() {
